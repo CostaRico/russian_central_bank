@@ -64,8 +64,8 @@ class Money
         #client = Savon::Client.new(wsdl: CBR_SERVICE_URL, log: false, log_level: :error, adapter: :net_http)
 #=======
       def exchange_rates(date = Date.today)
-        client = Savon::Client.new wsdl: CBR_SERVICE_URL, log: false, log_level: :error,
-          follow_redirects: true
+        client = Savon::Client.new(wsdl: CBR_SERVICE_URL, log: false, log_level: :error, adapter: :net_http)
+        
 #>>>>>>> 200ea848520f9243723e29dcc8185b3f7432b8cb
         response = client.call(:get_curs_on_date, message: { 'On_date' => date.strftime('%Y-%m-%dT%H:%M:%S') })
         response.body[:get_curs_on_date_response][:get_curs_on_date_result][:diffgram][:valute_data][:valute_curs_on_date]
